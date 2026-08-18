@@ -64,6 +64,8 @@ export function createUiRenderer() {
   const routeButton = document.getElementById("routeButton");
   const swapButton = document.getElementById("swapButton");
   const clearButton = document.getElementById("clearButton");
+  const navigationAction = document.getElementById("navigationAction");
+  const navigationLink = document.getElementById("navigationLink");
   const penaltyControl = document.getElementById("penaltyMultiplier");
   const penaltyValue = document.getElementById("penaltyValue");
   const stats = document.getElementById("stats");
@@ -99,7 +101,8 @@ export function createUiRenderer() {
     trafficCalmingDataReady,
     startPlace,
     endPlace,
-    routeCount
+    routeCount,
+    navigationUrl
   }) {
     if (routeButton) {
       routeButton.disabled =
@@ -127,6 +130,20 @@ export function createUiRenderer() {
         endPlace ||
         routeCount > 0
       );
+    }
+
+    const navigationReady = routeCount > 0 && Boolean(navigationUrl);
+
+    if (navigationAction) {
+      navigationAction.hidden = !navigationReady;
+    }
+
+    if (navigationLink) {
+      if (navigationReady) {
+        navigationLink.href = navigationUrl;
+      } else {
+        navigationLink.removeAttribute("href");
+      }
     }
 
     if (penaltyControl) {

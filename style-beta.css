@@ -109,6 +109,40 @@ body {
   font-weight: bold;
 }
 
+.navigation-action {
+  margin-top: 10px;
+}
+
+.navigation-link {
+  display: block;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 10px;
+  border: 1px solid #0057cc;
+  border-radius: 6px;
+  background: #0057cc;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navigation-link:hover {
+  background: #0048aa;
+}
+
+.navigation-link:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+.navigation-help {
+  margin: 5px 0 0;
+  color: #555;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .penalty-control,
 #legend {
   margin-top: 14px;
@@ -365,7 +399,8 @@ gmp-place-autocomplete:focus-within {
   }
 
   .route-actions button,
-  .route-card button {
+  .route-card button,
+  .navigation-link {
     min-height: 44px;
   }
 

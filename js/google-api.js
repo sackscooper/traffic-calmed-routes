@@ -40,6 +40,29 @@ export function createRouteWaypoint(location) {
   };
 }
 
+function formatGoogleMapsLocation(location) {
+  const latitude = Number(location?.latitude);
+  const longitude = Number(location?.longitude);
+
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+    throw new Error("Navigation location is missing valid coordinates.");
+  }
+
+  return `${latitude},${longitude}`;
+}
+
+export function buildGoogleMapsNavigationUrl(origin, destination) {
+  const parameters = new URLSearchParams({
+    api: "1",
+    origin: formatGoogleMapsLocation(origin),
+    destination: formatGoogleMapsLocation(destination),
+    travelmode: "driving",
+    dir_action: "navigate"
+  });
+
+  return `https://www.google.com/maps/dir/?${parameters.toString()}`;
+}
+
 export async function createPlaceAutocompleteElements(
   startContainer,
   endContainer

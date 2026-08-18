@@ -1,11 +1,12 @@
 import {
+  buildGoogleMapsNavigationUrl,
   createPlaceAutocompleteElements,
   createRouteWaypoint,
   getPlaceLabel,
   placeToRouteLocation,
   requestDrivingRoutes,
   resolvePlacePrediction
-} from "./google-api.js";
+} from "./google-api.js?v=10";
 import {
   clearRouteState,
   createRouteAppState,
@@ -19,7 +20,7 @@ import {
   recalculateAnalyzedRouteScores
 } from "./route-scoring.js";
 import { loadTrafficCalmingData } from "./traffic-data.js";
-import { createUiRenderer } from "./ui-renderer.js";
+import { createUiRenderer } from "./ui-renderer.js?v=10";
 
 const state = createRouteAppState();
 const ui = createUiRenderer();
@@ -29,13 +30,31 @@ const mobileAutocompleteMediaQuery = "(max-width: 600px)";
 const autocompleteScrollTimers = new WeakMap();
 
 function updateControls() {
+  let navigationUrl = "";
+
+  if (
+    state.analyzedRoutes.length > 0 &&
+    state.startPlace &&
+    state.endPlace
+  ) {
+    try {
+      navigationUrl = buildGoogleMapsNavigationUrl(
+        placeToRouteLocation(state.startPlace),
+        placeToRouteLocation(state.endPlace)
+      );
+    } catch (error) {
+      console.error("Google Maps navigation link could not be created:", error);
+    }
+  }
+
   ui.updateControls({
     routeRequestInProgress: state.routeRequestInProgress,
     autocompleteReady: state.autocompleteReady,
     trafficCalmingDataReady: state.trafficCalmingDataReady,
     startPlace: state.startPlace,
     endPlace: state.endPlace,
-    routeCount: state.analyzedRoutes.length
+    routeCount: state.analyzedRoutes.length,
+    navigationUrl
   });
 }
 

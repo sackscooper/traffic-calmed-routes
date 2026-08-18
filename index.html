@@ -8,7 +8,7 @@
     name="description"
     content="Compare Nashville driving routes by their exposure to traffic-calming projects."
   />
-  <link rel="stylesheet" href="style-beta.css?v=9" />
+  <link rel="stylesheet" href="style-beta.css?v=10" />
 </head>
 
 <body>
@@ -38,6 +38,19 @@
       <button id="routeButton" type="button" disabled aria-busy="false">Get Route</button>
       <button id="swapButton" type="button" disabled>Swap locations</button>
       <button id="clearButton" type="button" disabled>Clear route</button>
+    </div>
+
+    <div id="navigationAction" class="navigation-action" hidden>
+      <a
+        id="navigationLink"
+        class="navigation-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-describedby="navigationHelp"
+      >Navigate in Google Maps</a>
+      <p id="navigationHelp" class="navigation-help">
+        Google Maps may recalculate and choose a different route.
+      </p>
     </div>
 
     <div class="penalty-control">
@@ -107,7 +120,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
-  <script src="app-beta.js?v=9"></script>
+  <script src="app-beta.js?v=10"></script>
 
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmPAuVhhXh7JoP3kyB6oVijFAQUr810tY&v=weekly&loading=async&callback=initMap"
