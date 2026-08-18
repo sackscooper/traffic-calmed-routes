@@ -1,0 +1,346 @@
+html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#sidebar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 330px;
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  z-index: 10;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+#sidebar h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.data-note {
+  color: #555;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.data-note a {
+  color: #0057cc;
+}
+
+#stats {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+#map {
+  position: fixed !important;
+  inset: 0;
+  height: 100vh !important;
+  height: 100dvh !important;
+  width: 100vw !important;
+}
+
+#sidebar label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#sidebar input:not([type="range"]) {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.route-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#routeButton {
+  grid-column: 1 / -1;
+}
+
+.route-actions button,
+.route-card button {
+  min-height: 40px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #9a9a9a;
+  border-radius: 6px;
+  background: #f4f4f4;
+  color: #111;
+  font: inherit;
+}
+
+.route-actions button:disabled,
+.route-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+#routeButton:not(:disabled) {
+  border-color: #0057cc;
+  background: #0057cc;
+  color: white;
+  font-weight: bold;
+}
+
+.penalty-control,
+#legend {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.penalty-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.penalty-heading label,
+#legend h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#penaltyValue {
+  font-variant-numeric: tabular-nums;
+  font-weight: bold;
+  color: #0057cc;
+}
+
+#penaltyMultiplier {
+  width: 100%;
+  margin: 8px 0 0;
+  accent-color: #0057cc;
+}
+
+.control-help {
+  margin: 4px 0 0;
+  color: #555;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: 7px 8px;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.legend-line {
+  display: block;
+  width: 26px;
+  border-top-style: solid;
+  border-radius: 999px;
+}
+
+.legend-red {
+  border-top-width: 3px;
+  border-top-color: #fe0000;
+}
+
+.legend-orange {
+  border-top-width: 7px;
+  border-top-color: #ff9900;
+}
+
+.legend-blue {
+  border-top-width: 6px;
+  border-top-color: #0057ff;
+}
+
+.legend-gray {
+  border-top-width: 5px;
+  border-top-color: #666;
+  opacity: 0.6;
+}
+
+.legend-marker {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.legend-start {
+  background: #188038;
+}
+
+.legend-end {
+  background: #c5221f;
+}
+
+#routeStats {
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.route-card {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f8f8f8;
+}
+
+.selected-route {
+  border: 2px solid #0057FF;
+  background: #eef4ff;
+}
+
+.route-card button {
+  margin-top: 8px;
+}
+.recommendation-box {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid #008000;
+  border-radius: 6px;
+  background: #f0fff0;
+}
+
+.recommended-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-radius: 999px;
+  background: #008000;
+  color: white;
+}
+
+.autocomplete-container {
+  width: 100%;
+  margin-top: 4px;
+}
+
+gmp-place-autocomplete {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  color-scheme: light;
+  background-color: #fff;
+  color: #202124;
+  border: 1px solid #747775;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+gmp-place-autocomplete::part(input),
+gmp-place-autocomplete::part(prediction-list),
+gmp-place-autocomplete::part(prediction-item) {
+  background-color: #fff;
+  color: #202124;
+}
+
+gmp-place-autocomplete::part(prediction-item-secondary-text) {
+  color: #5f6368;
+}
+
+gmp-place-autocomplete::part(prediction-item):hover,
+gmp-place-autocomplete::part(prediction-item-selected) {
+  background-color: #f1f3f4;
+}
+
+button:focus-visible,
+input[type="range"]:focus-visible,
+gmp-place-autocomplete:focus-within {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 600px) {
+  #sidebar {
+    top: auto;
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: max(8px, env(safe-area-inset-left));
+    width: auto;
+    max-height: 58vh;
+    max-height: 58dvh;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  #sidebar h2 {
+    font-size: 18px;
+  }
+
+  #sidebar > p {
+    margin-top: 6px;
+    font-size: 13px;
+  }
+
+  .route-actions button,
+  .route-card button {
+    min-height: 44px;
+  }
+
+  .legend-grid {
+    grid-template-columns: 28px 1fr 28px 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .legend-grid {
+    grid-template-columns: 28px 1fr;
+  }
+}
+
+@media (max-height: 500px) and (min-width: 601px) {
+  #sidebar {
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    max-height: none;
+  }
+}
