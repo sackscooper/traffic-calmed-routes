@@ -200,6 +200,14 @@
       );
     });
 
+    test("starts with 1.75x traffic-calming avoidance", () => {
+      const routeState = createRouteAppState();
+      assert(
+        routeState.trafficCalmingPenaltyMultiplier === 1.75,
+        "Default avoidance multiplier is wrong."
+      );
+    });
+
     test("normalizes browser routes for scoring and map rendering", () => {
       const normalized = normalizeBrowserRoute({
         description: "Test route",

@@ -16,7 +16,7 @@ export function createRouteAppState() {
     suppressEndInvalidationUntil: 0,
     startSelectionId: 0,
     endSelectionId: 0,
-    trafficCalmingPenaltyMultiplier: 1
+    trafficCalmingPenaltyMultiplier: 1.75
   };
 }
 
