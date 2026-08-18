@@ -4,6 +4,10 @@ An interactive map for comparing Nashville driving routes by their exposure to c
 
 The app is a static website built with HTML, CSS, JavaScript, Google Maps Platform, Turf.js, and a local GeoJSON dataset. It does not require a build step.
 
+## Live website
+
+Use the app at [sackscooper.github.io/traffic-calmed-routes](https://sackscooper.github.io/traffic-calmed-routes/).
+
 ## Run locally
 
 Serve the project directory with any local web server, then open `index.html`. For example:
