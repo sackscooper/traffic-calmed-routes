@@ -158,6 +158,42 @@ body {
   font-size: 13px;
 }
 
+.about-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.about-section summary {
+  color: #0057cc;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.about-section summary:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 3px;
+}
+
+.about-content p {
+  margin: 9px 0 0;
+}
+
+.about-content ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.about-content li + li {
+  margin-top: 4px;
+}
+
+.about-caution {
+  color: #555;
+}
+
 .legend-line {
   display: block;
   width: 26px;

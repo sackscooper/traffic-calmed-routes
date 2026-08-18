@@ -8,7 +8,7 @@
     name="description"
     content="Compare Nashville driving routes by their exposure to traffic-calming projects."
   />
-  <link rel="stylesheet" href="style-beta.css?v=8" />
+  <link rel="stylesheet" href="style-beta.css?v=9" />
 </head>
 
 <body>
@@ -68,6 +68,35 @@
         <span class="legend-marker legend-end" aria-hidden="true">B</span><span>Destination</span>
       </div>
     </section>
+
+    <details class="about-section">
+      <summary>About / How scoring works</summary>
+      <div class="about-content">
+        <p>
+          This planning tool compares route options from Google Maps with
+          Nashville projects marked as completed with vertical traffic-calming
+          measures.
+        </p>
+        <p>
+          <strong>Adjusted score = travel time + traffic-calming penalty.</strong>
+          The route with the lowest adjusted score is recommended.
+        </p>
+        <ul>
+          <li>Each matched project adds 0.5 minutes to the base penalty.</li>
+          <li>Each matched kilometer adds another 1.5 minutes.</li>
+          <li>The avoidance slider multiplies that penalty; 0× ignores it.</li>
+        </ul>
+        <p>
+          A project is matched when the route stays within 20 meters, runs in
+          roughly the same direction, and overlaps continuously for at least
+          30 meters. Each project is counted once.
+        </p>
+        <p class="about-caution">
+          The adjusted score is a comparison tool—not a predicted travel time,
+          safety rating, or guarantee of current road conditions.
+        </p>
+      </div>
+    </details>
 
     <div id="stats" role="status" aria-live="polite" aria-atomic="true">Loading traffic calming data...</div>
     <div id="routeStats" role="region" aria-label="Route results"></div>

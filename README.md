@@ -18,7 +18,8 @@ python3 -m http.server 8000
 
 Then visit `http://localhost:8000/`.
 
-The browser-based regression checks are available at `matching-tests.html`.
+The browser-based regression checks are kept in a local-only file so they are
+not included in the public GitHub Pages deployment.
 
 ## Publishing
 
