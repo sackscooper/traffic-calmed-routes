@@ -1,4 +1,4 @@
-const appModulePromise = import("./js/app.js");
+const appModulePromise = import("./js/app.js?v=9");
 
 async function initMap() {
   try {

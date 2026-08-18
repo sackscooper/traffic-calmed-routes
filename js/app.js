@@ -25,6 +25,8 @@ const state = createRouteAppState();
 const ui = createUiRenderer();
 const mapRenderer = createMapRenderer();
 let initialized = false;
+const mobileAutocompleteMediaQuery = "(max-width: 600px)";
+const autocompleteScrollTimers = new WeakMap();
 
 function updateControls() {
   ui.updateControls({
@@ -186,6 +188,61 @@ function isAddressEditingKey(event) {
   );
 }
 
+function alignMobileAutocomplete(element) {
+  const sidebar = document.getElementById("sidebar");
+
+  if (
+    !sidebar ||
+    !element ||
+    !window.matchMedia(mobileAutocompleteMediaQuery).matches
+  ) {
+    return;
+  }
+
+  const elementRect = element.getBoundingClientRect();
+  const sidebarRect = sidebar.getBoundingClientRect();
+  const targetScrollTop =
+    sidebar.scrollTop + elementRect.top - sidebarRect.top - 8;
+
+  sidebar.scrollTop = Math.max(0, targetScrollTop);
+}
+
+function activateMobileAutocomplete(element) {
+  const sidebar = document.getElementById("sidebar");
+
+  if (
+    !sidebar ||
+    !window.matchMedia(mobileAutocompleteMediaQuery).matches
+  ) {
+    return;
+  }
+
+  sidebar.classList.add("autocomplete-active");
+  window.requestAnimationFrame(() => alignMobileAutocomplete(element));
+
+  const existingTimer = autocompleteScrollTimers.get(element);
+  if (existingTimer) window.clearTimeout(existingTimer);
+
+  autocompleteScrollTimers.set(
+    element,
+    window.setTimeout(() => alignMobileAutocomplete(element), 300)
+  );
+}
+
+function deactivateMobileAutocomplete() {
+  document
+    .getElementById("sidebar")
+    ?.classList.remove("autocomplete-active");
+}
+
+function scheduleMobileAutocompleteDeactivation() {
+  window.setTimeout(() => {
+    if (!document.querySelector("gmp-place-autocomplete:focus-within")) {
+      deactivateMobileAutocomplete();
+    }
+  }, 150);
+}
+
 function invalidateSelectedPlace(which) {
   const now = Date.now();
   const isStart = which === "start";
@@ -223,7 +280,14 @@ function invalidateSelectedPlace(which) {
 }
 
 function attachPlaceInvalidationListeners(element, which) {
-  element.addEventListener("input", () => invalidateSelectedPlace(which));
+  element.addEventListener("focusin", () => {
+    activateMobileAutocomplete(element);
+  });
+  element.addEventListener("focusout", scheduleMobileAutocompleteDeactivation);
+  element.addEventListener("input", () => {
+    invalidateSelectedPlace(which);
+    activateMobileAutocomplete(element);
+  });
   element.addEventListener("paste", () => invalidateSelectedPlace(which));
   element.addEventListener("cut", () => invalidateSelectedPlace(which));
   element.addEventListener("keydown", (event) => {
@@ -260,6 +324,7 @@ async function handlePlaceSelection(which, placePrediction) {
     ui.announceStatus(
       `${isStart ? "Start location" : "Destination"} selected: ${getPlaceLabel(place)}.`
     );
+    deactivateMobileAutocomplete();
   } catch (error) {
     if (selectionId !== state[selectionKey]) return;
 
@@ -269,6 +334,7 @@ async function handlePlaceSelection(which, placePrediction) {
       `The ${isStart ? "start location" : "destination"} could not be loaded. Please select it again from the suggestions.`
     );
     updateControls();
+    deactivateMobileAutocomplete();
   }
 }
 

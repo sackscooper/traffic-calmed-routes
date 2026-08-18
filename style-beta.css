@@ -309,6 +309,14 @@ gmp-place-autocomplete:focus-within {
     max-height: 58dvh;
     padding: 14px;
     border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #sidebar.autocomplete-active {
+    top: max(8px, env(safe-area-inset-top));
+    bottom: auto;
+    max-height: calc(100dvh - 16px);
+    scroll-padding-block: 8px 45dvh;
   }
 
   #sidebar h2 {
