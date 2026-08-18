@@ -18,9 +18,9 @@ The browser-based regression checks are available at `matching-tests.html`.
 
 ## Publishing
 
-The static frontend is compatible with GitHub Pages. Before making a public deployment, replace the current development Google Maps credentials and restrict production credentials to the final HTTPS site and only the required APIs.
+The static frontend is compatible with GitHub Pages. 
 
-The app requests alternative routes through the Maps JavaScript API Route class so its browser credential can be protected with website and API restrictions. Review the security, quota, billing, privacy, and dataset-attribution items in `PUBLISHING-CHECKLIST.md` before treating a public preview as a production launch.
+The app requests alternative routes through the Maps JavaScript API Route class so its browser credential can be protected with website and API restrictions.
 
 ## Data
 
